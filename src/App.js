@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Jumbotron from 'react-bootstrap/Jumbotron';
-//import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Input ,Card, Button, CardTitle, CardText, Col } from 'reactstrap';
+
 
 import './App.css';
 
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {bill: '$0.00',
+    this.state = {bill: 0,
                   percent: 15,
                   tip: '$0.00' }
 
@@ -38,15 +38,17 @@ class NameForm extends React.Component {
     return (
       <>
       <form onSubmit={this.calcTip}>
-        <label>
-          Bill:
-          <input type="text" name="bill" value={this.state.bill} onChange={this.handleChange} />
-        </label>
-        <label>
+        <Container>
+        <Col xs='auto'style={{padding: '10px'}}>
+        Bill ($):
+          <Input type="number" name="bill" style={{width: '200px'}} value={this.state.bill} onChange={this.handleChange} />
+        </Col>
+        <Col style={{padding: '10px'}}>
           Tip Percentage (%):
-          <input type="text" name="percent" value={this.state.percent} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+          <Input type="number" name="percent" style={{width: '200px'}} value={this.state.percent} onChange={this.handleChange} />
+        </Col>
+        <Button type="submit" color="primary" size="lg">Submit</Button>
+        </Container>
       </form>
       <Card body className="text-center">
         <CardTitle tag="h2">Tip:</CardTitle>
